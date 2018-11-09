@@ -24,12 +24,18 @@ class App extends React.Component {
       ]
     };
   }
+
+  addNote = () => {
+    console.log('add note')
+    this.setState({notes: [...this.state.notes, {id: uuidv4(), task: 'Something New'}]})
+  }
+
   render() {
     const {notes} = this.state;
     return (
       <div className="App">
         <Notes notes={notes}/>
-        <button onClick={() => console.log('add note')}>+</button>
+        <button onClick={this.addNote}>+</button>
       </div>
     );
   }
