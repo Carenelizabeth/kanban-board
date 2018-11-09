@@ -1,8 +1,7 @@
 import React from 'react';
 
-export default (props) => (
-    <div>
-        <span>{props.task}    </span>
-        <button onClick={props.onDelete}>x</button>
+export default ({children, ...props}) => (
+    <div {...props}>       
+        {children}
     </div>
 )
