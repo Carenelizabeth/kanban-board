@@ -30,11 +30,21 @@ class App extends React.Component {
     this.setState({notes: [...this.state.notes, {id: uuidv4(), task: 'Something New'}]})
   }
 
+  deleteNote = (id, e) => {
+    e.stopPropagation();
+    this.setState({
+      notes:this.state.notes.filter(note => note.id !==id)
+    });
+  } 
+
   render() {
     const {notes} = this.state;
     return (
       <div className="App">
-        <Notes notes={notes}/>
+        <Notes 
+          notes={notes}
+          onDelete={this.deleteNote}
+        />
         <button onClick={this.addNote}>+</button>
       </div>
     );
