@@ -11,15 +11,15 @@ class App extends React.Component {
       notes: [
         {
             id: uuidv4(),
-            task: 'Learn React'
+            task: 'Learn React',
         },
         {
             id: uuidv4(),
-            task: 'Do Laundry'
+            task: 'Do Laundry',
         },
         {
             id: uuidv4(),
-            task: 'Find a job'
+            task: 'Find a job',
         }
       ]
     };
@@ -35,7 +35,30 @@ class App extends React.Component {
     this.setState({
       notes:this.state.notes.filter(note => note.id !==id)
     });
-  } 
+  }
+  
+  activateNoteEdit = (id) => {
+    this.setState({
+      notes: this.state.notes.map(note => {
+        if(note.id === id){
+          note.editing = true;
+        }
+        return note;
+      })
+    })
+  }
+
+  editNote = (id, task) => {
+    this.setState({
+      notes: this.state.notes.map(note => {
+        if(note.id === id){
+          note.editing = false;
+          note.task = task;
+        }
+        return note;
+      })
+    })
+  }
 
   render() {
     const {notes} = this.state;
@@ -43,6 +66,8 @@ class App extends React.Component {
       <div className="App">
         <Notes 
           notes={notes}
+          onNoteClick={this.activateNoteEdit}
+          onEdit={this.editNote}
           onDelete={this.deleteNote}
         />
         <button onClick={this.addNote}>+</button>

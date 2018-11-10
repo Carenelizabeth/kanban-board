@@ -1,7 +1,9 @@
 import React from 'react';
 
-export default ({children, ...props}) => (
-    <div {...props}>       
-        {children}
-    </div>
-)
+export default function Note({children, ...props}){
+    return(
+        <div {...props}>       
+            {children}
+        </div>
+    )
+}
